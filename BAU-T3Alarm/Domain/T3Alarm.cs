@@ -21,10 +21,12 @@ namespace Domain
                 {"MLAW", new SoundPlayer(Resource.MLAW)},
                 {"LFM", new SoundPlayer(Resource.LFM)},
                 {"IQL", new SoundPlayer(Resource.IQL)},
+                {"ERROR", new SoundPlayer(Resource.scream)},
             };
             _timeCheck = new TimeToDing();
         }
 
+        // ReSharper disable once FunctionNeverReturns -- Infinite Poller Loop
         public void Start(Func<PingResult> request)
         {
             Console.Clear();
@@ -32,7 +34,8 @@ namespace Domain
             {
                 if (_timeCheck.CheckTime(DateTime.Now))
                 {
-                    var projectsWithT3 = request().ProjectsWithT3;
+                    var pingResult = request();
+                    var projectsWithT3 = pingResult.ProjectsWithT3;
                     if (projectsWithT3.Count >= 1)
                     {
                         foreach (var project in projectsWithT3)
@@ -40,6 +43,9 @@ namespace Domain
                             _soundPlayers[project.Key].Play();
                         }
                     }
+
+                    if (pingResult.Errors)
+                        _soundPlayers["ERROR"].Play();
                 }
                 Thread.Sleep(TimeSpan.FromSeconds(_waitTime));
             }

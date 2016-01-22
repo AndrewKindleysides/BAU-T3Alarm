@@ -38,6 +38,9 @@ namespace Domain
                 result.ProjectsWithT3.Add("IQL", iqlJiraCount);
 
             var total = mlcJiraCount + mlawJiraCount + lfmJiraCount + iqlJiraCount;
+            if (total < 0)
+                result.Errors = true;
+
             DisplayT3TotalForPoll(total);
             
             return result;

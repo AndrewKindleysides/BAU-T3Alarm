@@ -130,4 +130,7 @@
   <data name="MLC" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>MLC.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="scream" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>scream.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>
